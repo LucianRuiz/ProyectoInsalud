@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💚 Una Invitación Mágica 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Crimson+Text:ital,wght@0,400;1,400&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --emerald: #00ff88;
+            --hot-pink: #ff1493;
+            --electric-blue: #00d4ff;
+            --purple: #b026ff;
+            --gold: #ffd700;
+            --lime: #ccff00;
+        }
+
+        body {
+            background: linear-gradient(135deg, 
+                #1a0033 0%, 
+                #2d1b4e 20%, 
+                #0a2342 40%, 
+                #1a5e63 60%, 
+                #4a1e4a 80%, 
+                #1a0033 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            font-family: 'Crimson Text', serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Estrellas brillantes de fondo */
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Burbujas flotantes */
+        .bubble {
+            position: fixed;
+            border-radius: 50%;
+            animation: float-up 15s infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes float-up {
+            0% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+        }
+
+        /* Contenedor principal */
+        .invitation-container {
+            position: relative;
+            z-index: 10;
+            max-width: 700px;
+            width: 100%;
+            background: linear-gradient(135deg, 
+                rgba(0, 255, 136, 0.1), 
+                rgba(255, 20, 147, 0.1), 
+                rgba(0, 212, 255, 0.1), 
+                rgba(176, 38, 255, 0.1));
+            border: 4px solid transparent;
+            border-radius: 30px;
+            padding: 50px;
+            box-shadow: 
+                0 0 100px rgba(0, 255, 136, 0.4),
+                0 0 60px rgba(255, 20, 147, 0.4),
+                0 0 40px rgba(0, 212, 255, 0.4),
+                inset 0 0 80px rgba(176, 38, 255, 0.2);
+            animation: glow-border 3s infinite;
+            backdrop-filter: blur(20px);
+        }
+
+        @keyframes glow-border {
+            0%, 100% { 
+                box-shadow: 
+                    0 0 100px rgba(0, 255, 136, 0.4),
+                    0 0 60px rgba(255, 20, 147, 0.4),
+                    0 0 40px rgba(0, 212, 255, 0.4);
+            }
+            50% { 
+                box-shadow: 
+                    0 0 120px rgba(0, 255, 136, 0.6),
+                    0 0 80px rgba(255, 20, 147, 0.6),
+                    0 0 60px rgba(0, 212, 255, 0.6);
+            }
+        }
+
+        .sparkle {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            animation: sparkle-rotate 2s linear infinite;
+        }
+
+        @keyframes sparkle-rotate {
+            0% { transform: rotate(0deg) scale(1); opacity: 1; }
+            50% { transform: rotate(180deg) scale(1.5); opacity: 0.6; }
+            100% { transform: rotate(360deg) scale(1); opacity: 1; }
+        }
+
+        .top-sparkle { top: 20px; left: 20px; animation-delay: 0s; }
+        .top-right-sparkle { top: 20px; right: 20px; animation-delay: 0.5s; }
+        .bottom-sparkle { bottom: 20px; left: 20px; animation-delay: 1s; }
+        .bottom-right-sparkle { bottom: 20px; right: 20px; animation-delay: 1.5s; }
+
+        /* Título principal */
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 72px;
+            font-weight: 900;
+            text-align: center;
+            background: linear-gradient(45deg, 
+                var(--emerald), 
+                var(--electric-blue), 
+                var(--hot-pink), 
+                var(--purple), 
+                var(--gold));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradient-shift 5s ease infinite;
+            margin-bottom: 20px;
+            text-shadow: 0 0 40px rgba(0, 255, 136, 0.5);
+            line-height: 1.1;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .subtitle {
+            font-family: 'Pacifico', cursive;
+            font-size: 28px;
+            text-align: center;
+            color: var(--electric-blue);
+            text-shadow: 
+                0 0 20px var(--electric-blue),
+                0 0 40px var(--hot-pink);
+            margin-bottom: 40px;
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { 
+                text-shadow: 
+                    0 0 20px var(--electric-blue),
+                    0 0 40px var(--hot-pink);
+            }
+            50% { 
+                text-shadow: 
+                    0 0 30px var(--electric-blue),
+                    0 0 60px var(--hot-pink),
+                    0 0 80px var(--purple);
+            }
+        }
+
+        /* Mensaje personal */
+        .message {
+            font-size: 22px;
+            line-height: 1.8;
+            color: #ffffff;
+            text-align: center;
+            margin: 30px 0;
+            text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+
+        .highlight {
+            font-family: 'Pacifico', cursive;
+            color: var(--hot-pink);
+            font-size: 26px;
+            text-shadow: 
+                0 0 20px var(--hot-pink),
+                0 0 40px var(--purple);
+        }
+
+        /* Detalles del evento */
+        .event-details {
+            background: linear-gradient(135deg, 
+                rgba(0, 255, 136, 0.15),
+                rgba(255, 20, 147, 0.15),
+                rgba(0, 212, 255, 0.15));
+            border: 3px solid rgba(0, 212, 255, 0.5);
+            border-radius: 20px;
+            padding: 35px;
+            margin: 40px 0;
+            box-shadow: 
+                0 0 40px rgba(0, 255, 136, 0.3),
+                inset 0 0 40px rgba(176, 38, 255, 0.2);
+            animation: detail-float 4s ease-in-out infinite;
+        }
+
+        @keyframes detail-float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 20px 0;
+            font-size: 24px;
+            color: white;
+        }
+
+        .detail-icon {
+            font-size: 36px;
+            margin-right: 15px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .detail-text {
+            font-family: 'Crimson Text', serif;
+            font-weight: 600;
+        }
+
+        .detail-value {
+            color: var(--gold);
+            font-weight: 700;
+            text-shadow: 0 0 20px var(--gold);
+            margin-left: 10px;
+        }
+
+        /* Nota especial */
+        .special-note {
+            background: linear-gradient(45deg, 
+                rgba(255, 20, 147, 0.2),
+                rgba(176, 38, 255, 0.2));
+            border: 2px solid var(--hot-pink);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(255, 20, 147, 0.4);
+        }
+
+        .special-note p {
+            font-family: 'Pacifico', cursive;
+            font-size: 26px;
+            color: var(--hot-pink);
+            text-shadow: 0 0 20px rgba(255, 20, 147, 0.8);
+            animation: rainbow-text 3s infinite;
+            margin: 10px 0;
+        }
+
+        @keyframes rainbow-text {
+            0% { color: var(--hot-pink); }
+            25% { color: var(--electric-blue); }
+            50% { color: var(--emerald); }
+            75% { color: var(--purple); }
+            100% { color: var(--hot-pink); }
+        }
+
+        /* Corazones flotantes */
+        .heart {
+            position: fixed;
+            font-size: 30px;
+            animation: float-heart 10s infinite;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        @keyframes float-heart {
+            0% { 
+                transform: translateY(100vh) rotate(0deg); 
+                opacity: 0; 
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(-100vh) rotate(360deg); 
+                opacity: 0; 
+            }
+        }
+
+        /* Confeti */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            animation: confetti-fall 8s infinite;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        @keyframes confetti-fall {
+            0% { 
+                transform: translateY(-100vh) rotate(0deg); 
+                opacity: 1; 
+            }
+            100% { 
+                transform: translateY(100vh) rotate(720deg); 
+                opacity: 0; 
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .invitation-container {
+                padding: 30px;
+            }
+            .title {
+                font-size: 48px;
+            }
+            .subtitle {
+                font-size: 22px;
+            }
+            .message {
+                font-size: 18px;
+            }
+            .detail-item {
+                font-size: 20px;
+            }
+            .special-note p {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Estrellas de fondo -->
+    <div class="stars" id="stars"></div>
+
+    <!-- Burbujas flotantes -->
+    <div id="bubbles"></div>
+
+    <!-- Corazones flotantes -->
+    <div id="hearts"></div>
+
+    <!-- Confeti -->
+    <div id="confetti"></div>
+
+    <!-- Invitación principal -->
+    <div class="invitation-container">
+        <!-- Brillos en las esquinas -->
+        <div class="sparkle top-sparkle">✨</div>
+        <div class="sparkle top-right-sparkle">💫</div>
+        <div class="sparkle bottom-sparkle">⭐</div>
+        <div class="sparkle bottom-right-sparkle">🌟</div>
+
+        <div class="title">WICKED</div>
+        <div class="subtitle">Una invitación mágica ✨</div>
+
+        <div class="message">
+            Mi amor, prepárate para una <span class="highlight">tarde mágica</span> ✨<br>
+            donde los sueños se vuelven realidad y la magia existe... 🎭<br>
+            ¡Viviremos juntos la historia más <span class="highlight">encantadora</span>! 💚💖
+        </div>
+
+        <div class="event-details">
+            <div class="detail-item">
+                <span class="detail-icon">🎬</span>
+                <span class="detail-text">Película:</span>
+                <span class="detail-value">WICKED 2</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-icon">📅</span>
+                <span class="detail-text">Fecha:</span>
+                <span class="detail-value">Viernes 12 de Diciembre</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-icon">⏰</span>
+                <span class="detail-text">Hora:</span>
+                <span class="detail-value">5:00 PM</span>
+            </div>
+            <div class="detail-item">
+                <span class="detail-icon">📍</span>
+                <span class="detail-text">Lugar:</span>
+                <span class="detail-value">Plaza San Miguel</span>
+            </div>
+        </div>
+
+        <div class="special-note">
+            <p>💙 Porque eres tú 💙</p>
+            <p>✨ Porque mereces toda la magia ✨</p>
+            <p>🌈 Porque juntos somos perfectos 🌈</p>
+            <p>💖 ¡Te amo infinito! 💖</p>
+        </div>
+    </div>
+
+    <script>
+        // Crear estrellas
+        const starsContainer = document.getElementById('stars');
+        for (let i = 0; i < 100; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            star.style.width = Math.random() * 3 + 'px';
+            star.style.height = star.style.width;
+            star.style.left = Math.random() * 100 + '%';
+            star.style.top = Math.random() * 100 + '%';
+            star.style.animationDelay = Math.random() * 3 + 's';
+            starsContainer.appendChild(star);
+        }
+
+        // Crear burbujas
+        const bubblesContainer = document.getElementById('bubbles');
+        const colors = ['#00ff88', '#ff1493', '#00d4ff', '#b026ff', '#ffd700', '#ccff00'];
+        
+        function createBubble() {
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            const size = Math.random() * 80 + 40;
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            bubble.style.left = Math.random() * 100 + '%';
+            bubble.style.background = `radial-gradient(circle at 30% 30%, ${colors[Math.floor(Math.random() * colors.length)]}88, transparent)`;
+            bubble.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            bubble.style.animationDelay = Math.random() * 5 + 's';
+            bubblesContainer.appendChild(bubble);
+            
+            setTimeout(() => bubble.remove(), 20000);
+        }
+
+        // Crear burbujas continuamente
+        setInterval(createBubble, 2000);
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createBubble, i * 400);
+        }
+
+        // Crear corazones
+        const heartsContainer = document.getElementById('hearts');
+        const heartEmojis = ['💚', '💖', '💙', '💜', '💛', '🧡'];
+        
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.textContent = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            heart.style.left = Math.random() * 100 + '%';
+            heart.style.animationDuration = (Math.random() * 5 + 8) + 's';
+            heart.style.animationDelay = Math.random() * 3 + 's';
+            heartsContainer.appendChild(heart);
+            
+            setTimeout(() => heart.remove(), 15000);
+        }
+
+        setInterval(createHeart, 1500);
+        for (let i = 0; i < 3; i++) {
+            setTimeout(createHeart, i * 500);
+        }
+
+        // Crear confeti
+        const confettiContainer = document.getElementById('confetti');
+        const confettiColors = ['#00ff88', '#ff1493', '#00d4ff', '#b026ff', '#ffd700', '#ccff00'];
+        
+        function createConfetti() {
+            const confetto = document.createElement('div');
+            confetto.className = 'confetti';
+            confetto.style.left = Math.random() * 100 + '%';
+            confetto.style.backgroundColor = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+            confetto.style.animationDuration = (Math.random() * 4 + 6) + 's';
+            confetto.style.animationDelay = Math.random() * 2 + 's';
+            confettiContainer.appendChild(confetto);
+            
+            setTimeout(() => confetto.remove(), 12000);
+        }
+
+        setInterval(createConfetti, 300);
+        for (let i = 0; i < 20; i++) {
+            setTimeout(createConfetti, i * 100);
+        }
+
+        // Efecto de cursor personalizado
+        document.addEventListener('mousemove', (e) => {
+            const sparkle = document.createElement('div');
+            sparkle.style.position = 'fixed';
+            sparkle.style.left = e.clientX + 'px';
+            sparkle.style.top = e.clientY + 'px';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.textContent = ['✨', '💫', '⭐', '🌟'][Math.floor(Math.random() * 4)];
+            sparkle.style.fontSize = '20px';
+            sparkle.style.animation = 'sparkle-fade 1s forwards';
+            sparkle.style.zIndex = '1000';
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => sparkle.remove(), 1000);
+        });
+
+        // Animación de fade para el cursor
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes sparkle-fade {
+                0% { opacity: 1; transform: scale(1) translateY(0); }
+                100% { opacity: 0; transform: scale(0.5) translateY(-30px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
